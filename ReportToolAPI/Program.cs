@@ -1,12 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using ReportToolAPI.Db;
+using ReportToolAPI.Interfaces;
+using ReportToolAPI.Repository;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 builder.Services.AddDbContext<ReportContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddTransient<IReportsRepository, ReportsRepository>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
