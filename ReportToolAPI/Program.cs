@@ -21,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ReportContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<IReportsRepository, ReportsRepository>();
+builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
