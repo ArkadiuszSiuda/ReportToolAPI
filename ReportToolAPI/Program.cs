@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ReportToolAPI.Db;
+using ReportToolAPI.Dtos;
+using ReportToolAPI.Entities;
 using ReportToolAPI.Interfaces;
 using ReportToolAPI.Middleware;
 using ReportToolAPI.Repository;
@@ -22,6 +24,7 @@ builder.Services.AddDbContext<ReportContext>(opt => opt.UseSqlServer(builder.Con
 
 builder.Services.AddTransient<IReportsRepository, ReportsRepository>();
 builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
+builder.Services.AddTransient<ICodesRepository, CodesRepository>();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ReportToolAPI.Entities;
 using ReportToolAPI.Interfaces;
+using System.Runtime.CompilerServices;
 
 namespace ReportToolAPI.Db;
 
@@ -24,6 +25,12 @@ public class ReportContext : ApiAuthorizationDbContext<IdentityUser>
         ICurrentUserService currentUserService) : base(options, operationOptions)
     {
         _currentUserService = currentUserService;
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Report>().HasQueryFilter(r => r.OwnerId == Guid.Parse(_currentUserService.UserId!));
+        base.OnModelCreating(modelBuilder);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

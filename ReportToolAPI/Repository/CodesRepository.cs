@@ -8,9 +8,10 @@ using ReportToolAPI.Interfaces;
 
 namespace ReportToolAPI.Repository;
 
-public class ProductsRepository : BaseRepository<Product, ProductDto>, IProductsRepository
+public class CodesRepository : BaseRepository<Code, CodeDto>, ICodesRepository
 {
-    public ProductsRepository(ReportContext context, IMapper mapper) : base(context, mapper)
+    public CodesRepository(ReportContext context, IMapper mapper) : base(context, mapper)
+
     {
     }
 }

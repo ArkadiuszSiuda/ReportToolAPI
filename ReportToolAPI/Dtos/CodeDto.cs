@@ -1,10 +1,8 @@
 ﻿namespace ReportToolAPI.Dtos;
 
-public class CodeDto
+public class CodeDto : BaseDto
 {
-    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-    public string Name { get; set; }
-
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 }

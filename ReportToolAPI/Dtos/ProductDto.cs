@@ -1,9 +1,8 @@
 ﻿namespace ReportToolAPI.Dtos;
 
-public class ProductDto
+public class ProductDto : BaseDto
 {
-    public Guid Id { get; set; }
-    public string Company { get; set; }
+    public string Company { get; set; } = string.Empty;
 
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

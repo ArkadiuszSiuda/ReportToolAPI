@@ -2,12 +2,11 @@
 
 namespace ReportToolAPI.Dtos;
 
-public class ReportDto
+public class ReportDto : BaseDto
 {
-    public Guid Id { get; set; }
-    public string Comment { get; set; }
+    public string Comment { get; set; } = string.Empty;
 
-    public string ToReproduce { get; set; }
+    public string ToReproduce { get; set; } = string.Empty;
 
     public int Reproducibility { get; set; }
 
