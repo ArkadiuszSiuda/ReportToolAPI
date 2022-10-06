@@ -1,3 +1,4 @@
+using CsvHelper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -11,11 +12,11 @@ using ReportToolAPI.Interfaces;
 using ReportToolAPI.Middleware;
 using ReportToolAPI.Repository;
 using ReportToolAPI.Services;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

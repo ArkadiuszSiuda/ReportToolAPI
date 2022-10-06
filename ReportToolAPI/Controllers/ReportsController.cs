@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CsvHelper;
+using System.IO;
+using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReportToolAPI.Dtos;
 using ReportToolAPI.Interfaces;
+using System.Data;
 
 namespace ReportToolAPI.Controllers;
 
@@ -56,5 +60,18 @@ public class ReportsController : ControllerBase
     {
         await _reportsRepository.Delete(id);
         return NoContent();
+    }
+
+    [HttpGet("Export")]
+    public async Task<ActionResult> ExportReport()
+    {
+        using var memoryStream = new MemoryStream();
+        var reportCsv = await _reportsRepository.Get();
+        using var streamWriter = new StreamWriter(memoryStream);
+        using var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
+        csvWriter.WriteRecords(reportCsv);
+        csvWriter.Flush();
+        var memStr = memoryStream.ToArray();
+        return File(memStr, "text/csv", "Reports.csv");
     }
 }
