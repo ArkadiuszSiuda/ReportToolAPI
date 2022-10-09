@@ -10,6 +10,9 @@ public class ReportDto : BaseDto
 
     public int Reproducibility { get; set; }
 
+    public Code? Code { get; set; }
+
+    public Product? Product { get; set; }
     public Guid CodeId { get; set; }
 
     public Guid ProductId { get; set; }

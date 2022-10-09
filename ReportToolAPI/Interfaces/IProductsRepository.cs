@@ -13,4 +13,6 @@ public interface IProductsRepository
     Task<ProductDto> Update(ProductDto productDto, Guid id);
 
     Task Delete(Guid id);
+
+    Task<int> Affects(Guid id);
 }

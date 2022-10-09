@@ -13,4 +13,6 @@ public interface ICodesRepository
     Task<CodeDto> Update(CodeDto codeDto, Guid id);
 
     Task Delete(Guid id);
+
+    Task<int> Affects(Guid id);
 }

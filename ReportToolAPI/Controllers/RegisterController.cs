@@ -43,4 +43,10 @@ public class RegisterController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet("{email}")]
+    public async Task<ActionResult> UserExistCheck([FromRoute] string email)
+    {
+        return Ok(await _userManager.FindByNameAsync(email) is not null);
+    }
 }

@@ -58,4 +58,10 @@ public class CodesController : ControllerBase
         await _codesRepository.Delete(id);
         return NoContent();
     }
+
+    [HttpGet("affects/{id}")]
+    public async Task<ActionResult<int>> Affects([FromRoute] Guid id)
+    {
+        return Ok(await _codesRepository.Affects(id));
+    }
 }

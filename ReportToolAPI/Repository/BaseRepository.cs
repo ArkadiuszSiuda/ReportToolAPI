@@ -52,7 +52,7 @@ public class BaseRepository<T, TDto> : IBaseRepository<T, TDto> where T : BaseEn
         }
     }
 
-    public async Task<List<TDto>> Get()
+    public virtual async Task<List<TDto>> Get()
     {
         return _mapper.Map<List<TDto>>(await table.ToListAsync());
     }

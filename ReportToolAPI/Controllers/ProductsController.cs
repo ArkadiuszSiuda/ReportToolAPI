@@ -58,4 +58,10 @@ public class ProductsController : ControllerBase
         await _productsRepository.Delete(id);
         return NoContent();
     }
+
+    [HttpGet("affects/{id}")]
+    public async Task<ActionResult<int>> Affects([FromRoute] Guid id)
+    {
+        return Ok(await _productsRepository.Affects(id));
+    }
 }

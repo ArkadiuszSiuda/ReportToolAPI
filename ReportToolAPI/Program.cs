@@ -88,6 +88,16 @@ builder.Services.AddSwaggerGen(options =>
     options.EnableAnnotations();
 });
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("NgOrigins", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -95,7 +105,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("NgOrigins");
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseAuthentication();
