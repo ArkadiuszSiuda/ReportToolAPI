@@ -44,12 +44,21 @@ public class LoginController : ControllerBase
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                 };
 
+            var roles = new List<string>();
+
+            foreach (var role in await _userManager.GetRolesAsync(user))
+            {
+                roles.Add(role);
+                authClaims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             var token = GetToken(authClaims);
 
             return Ok(new JwtResponse
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = token.ValidTo
+                Expiration = token.ValidTo,
+                Roles = roles
             });
         }
 

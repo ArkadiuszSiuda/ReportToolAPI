@@ -8,7 +8,7 @@ namespace ReportToolAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+[Authorize(Roles = "Admin")]
 public class CodesController : ControllerBase
 {
     private readonly ICodesRepository _codesRepository;
